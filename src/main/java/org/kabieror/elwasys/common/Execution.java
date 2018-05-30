@@ -308,6 +308,21 @@ public class Execution {
     }
 
     /**
+     * Returns the elapsed time since start as display string
+     * @return
+     */
+    public String getElapsedTimeString() {
+        long seconds = this.getElapsedTime().getSeconds();
+        long absSeconds = Math.abs(seconds);
+        String positive = String.format(
+            "%d:%02d:%02d",
+            absSeconds / 3600,
+            (absSeconds % 3600) / 60,
+            absSeconds % 60);
+        return seconds < 0 ? "-" + positive : positive;
+    }
+
+    /**
      * Der früheste Zeitpunkt ab jetzt, zu dem das Programm aufgrund von
      * Leistungsmessung automatisch beendet werden darf.
      *
@@ -421,4 +436,5 @@ public class Execution {
             throw new SQLException("This execution has been deleted.");
         }
     }
+
 }
