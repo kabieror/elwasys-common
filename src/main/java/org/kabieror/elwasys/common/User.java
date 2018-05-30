@@ -396,7 +396,7 @@ public class User {
      *
      * @throws SQLException
      */
-    private void loadCredit() throws SQLException {
+    private synchronized void loadCredit() throws SQLException {
         this.credit = null;
 
         ResultSet res = this.dataManager.getConnection()
@@ -416,6 +416,11 @@ public class User {
                 .executeQuery();
         while (res.next()) {
             final Program prog = this.dataManager.getProgramById(res.getInt("program_id"));
+            if (prog == null) {
+                this.logger.error("Invalid entry in the database: Execution #" + res.getInt("id")
+                    + " has no program set.");
+                continue;
+            }
             this.credit = this.credit.subtract(prog.getPrice(prog.getMaxDuration(), this));
         }
     }
