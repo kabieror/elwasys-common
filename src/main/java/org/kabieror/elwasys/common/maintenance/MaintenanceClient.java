@@ -42,7 +42,7 @@ public class MaintenanceClient {
 
     public MaintenanceClient(String serverAddress, int port, int timeout, int checkConnectionInterval,
                              String locationName, IMaintenanceMessageHandler messageHandler) throws IOException {
-        this.logger.info("Starting maintenance connection to " + serverAddress + ":" + port + ".");
+        this.logger.debug("Starting maintenance connection to " + serverAddress + ":" + port + ".");
         this.messageHandler = messageHandler;
         this.timeout = timeout;
         this.checkConnectionInterval = checkConnectionInterval;
