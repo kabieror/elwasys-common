@@ -22,7 +22,7 @@ import java.util.Iterator;
  */
 public class Utilities {
 
-    public static final String APP_VERSION = "0.3.4";
+    public static final String APP_VERSION = "0.3.5-SNAPSHOT";
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
